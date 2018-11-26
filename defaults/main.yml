@@ -1,0 +1,12 @@
+---
+
+name: hello-world
+namespace: hello-world
+image: docker.io/ansibleplaybookbundle/hello-world:latest
+
+# To uninstall from the cluster
+# state: absent
+state: present
+
+# The size of the hello-world deployment
+size: 1

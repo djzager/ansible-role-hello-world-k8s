@@ -1,0 +1,16 @@
+---
+
+- name: "Get information about the cluster"
+  set_fact:
+    api_groups: "{{ lookup('k8s', cluster_info='api_groups') }}"
+
+- name: 'Set hello-world objects state={{ state }}'
+  k8s:
+    state: '{{ state }}'
+    definition: "{{ lookup('template', item.name) | from_yaml }}"
+  when: item.apply | default(True)
+  loop:
+    - name: deployment.yml.j2
+    - name: service.yml.j2
+    - name: route.yml.j2
+      apply: "{{ True if 'route.openshift.io' in api_groups else False }}"

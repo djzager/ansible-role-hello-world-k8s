@@ -1,0 +1,39 @@
+---
+
+{% if cluster == 'kubernetes' %}
+apiVersion: apps/v1
+kind: Deployment
+{% else %}
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+{% endif %}
+metadata:
+  name: {{ name }}
+  namespace: {{ namespace }}
+  labels:
+    app: {{ name }}
+    service: {{ name }}
+spec:
+  replicas: {{ size }}
+{% if cluster == 'kubernetes' %}
+  selector:
+    matchLabels:
+      app: {{ name }}
+      service: {{ name }}
+{% else %}
+  selector:
+    app: {{ name }}
+    service: {{ name }}
+{% endif %}
+  template:
+    metadata:
+      labels:
+        app: {{ name }}
+        service: {{ name }}
+    spec:
+      containers:
+      - image: {{ image }}
+        name: hello-world
+        ports:
+        - containerPort: 8080
+          protocol: TCP
