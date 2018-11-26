@@ -1,22 +1,25 @@
 galaxy_info:
+  role_name: hello-world-k8s
   author: David Zager
   description: Manage hello-world application in Kubernetes|OpenShift
   company: Red Hat
   license: Apache 2.0
   min_ansible_version: 2.6
 
-  #
-  # platforms is a list of platforms, and each platform has a name and a list of versions.
-  #
   platforms:
-    - name: Centos
+    - name: Kubernetes
+      versions:
+        - 1.9
+        - 1.10
+    - name: OpenShift
+      versions:
+        - 3.9
+        - 3.11
 
   galaxy_tags:
     - kubernetes
     - k8s
     - openshift
-    - hello-world
+    - helloworld
 
 dependencies: []
-  # List your role dependencies here, one per line. Be sure to remove the '[]' above,
-  # if you add dependencies to this list.

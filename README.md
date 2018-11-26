@@ -1,30 +1,35 @@
-hello-world-apb
+Ansible Role: Hello World Kubernetes
 ======================
 
-[![Build Status](https://travis-ci.org/ansibleplaybookbundle/hello-world-apb.svg?branch=master)](https://travis-ci.org/ansibleplaybookbundle/hello-world-apb)
+[![Build Status](https://travis-ci.org/djzager/ansible-role-hello-world-k8s.svg?branch=master)](https://travis-ci.org/djzager/ansible-role-hello-world-k8s)
 
-An apb for deploying a simple [hello world](https://hub.docker.com/r/ansibleplaybookbundle/hello-world/) app that can be bound to PostgreSQL for testing purposes.
+Manages a Hello World application in Kubernetes|OpenShift.
 
-## What it does
-* Deploys a web app that can be bound to a database.
+# Requirements
 
-## Parameters
-* NAMESPACE: Optional, default 'hello-world', Namespace to deploy the cluster in.
+* ansible >= 2.6
+* [openshift python package](https://pypi.org/project/openshift/)
 
-## Running the application
+# Role Variables
+
+See [defaults/main.yml](defaults/main.yml).
+
+# Dependencies
+
+None
+
+# Example Playbook
+
+**NOTE** The example below assumes that you have a running Kubernetes|OpenShift
+cluster and that you have sufficient permissions in the
+`my-not-so-secret-namespace` namespace.
+
 ```
-docker run --rm --net=host \
--v $HOME/.kube:/opt/apb/.kube:z \
--u $UID \
-docker.io/ansibleplaybookbundle/hello-world-apb \
-provision --extra-vars 'namespace=hello-world'
-```
-
-## Tearing down the application
-```
-docker run --rm --net=host \
--v $HOME/.kube:/opt/apb/.kube:z \
--u $UID \
-docker.io/ansibleplaybookbundle/hello-world-apb \
-deprovision --extra-vars 'namespace=hello-world'
+- hosts: localhost
+  vars:
+    name: my-hello-world
+    namespace: my-not-so-secret-namespace
+    size: 3
+  roles:
+    - djzager.hello-world-k8s
 ```
