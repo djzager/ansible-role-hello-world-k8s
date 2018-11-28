@@ -1,0 +1,6 @@
+---
+
+- version: v1alpha1
+  group: examples.djzager.io
+  kind: HelloWorld
+  role: /opt/ansible/roles/hello-world-k8s

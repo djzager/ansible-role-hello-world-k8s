@@ -1,0 +1,11 @@
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: hello-world-operator
+subjects:
+- kind: ServiceAccount
+  name: hello-world-operator
+roleRef:
+  kind: Role
+  name: hello-world-operator
+  apiGroup: rbac.authorization.k8s.io

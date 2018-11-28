@@ -1,11 +1,11 @@
 ---
 
-{% if cluster == 'kubernetes' %}
-apiVersion: apps/v1
-kind: Deployment
-{% else %}
+{% if 'apps.openshift.io' in api_groups %}
 apiVersion: apps.openshift.io/v1
 kind: DeploymentConfig
+{% else %}
+apiVersion: apps/v1
+kind: Deployment
 {% endif %}
 metadata:
   name: {{ name }}
@@ -15,15 +15,15 @@ metadata:
     service: {{ name }}
 spec:
   replicas: {{ size }}
-{% if cluster == 'kubernetes' %}
+{% if 'apps.openshift.io' in api_groups %}
+  selector:
+    app: {{ name }}
+    service: {{ name }}
+{% else %}
   selector:
     matchLabels:
       app: {{ name }}
       service: {{ name }}
-{% else %}
-  selector:
-    app: {{ name }}
-    service: {{ name }}
 {% endif %}
   template:
     metadata:

@@ -1,7 +1,7 @@
 ---
 
-name: hello-world
-namespace: hello-world
+name: "{{ meta.name | default('hello-world') }}"
+namespace: "{{ meta.namespace | default('hello-world') }}"
 image: docker.io/ansibleplaybookbundle/hello-world:latest
 
 # To uninstall from the cluster

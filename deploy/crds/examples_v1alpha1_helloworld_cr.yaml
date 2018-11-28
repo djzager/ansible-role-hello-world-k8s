@@ -1,0 +1,8 @@
+apiVersion: examples.djzager.io/v1alpha1
+kind: HelloWorld
+metadata:
+  name: example-helloworld
+  namespace: default
+spec:
+  # Add fields here
+  size: 3
