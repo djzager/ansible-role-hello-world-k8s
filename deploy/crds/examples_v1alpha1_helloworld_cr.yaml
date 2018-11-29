@@ -4,5 +4,4 @@ metadata:
   name: example-helloworld
   namespace: default
 spec:
-  # Add fields here
   size: 3

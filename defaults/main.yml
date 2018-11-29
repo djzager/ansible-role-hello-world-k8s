@@ -1,5 +1,7 @@
 ---
 
+# NOTE: meta.name(space) come from CR metadata when run with Ansible Operator
+# deploy/crds has an example CR for reference
 name: "{{ meta.name | default('hello-world') }}"
 namespace: "{{ meta.namespace | default('hello-world') }}"
 image: docker.io/ansibleplaybookbundle/hello-world:latest
