@@ -4,7 +4,7 @@ Ansible Role: Hello World Kubernetes
 [![Build Status](https://travis-ci.org/djzager/ansible-role-hello-world-k8s.svg?branch=master)](https://travis-ci.org/djzager/ansible-role-hello-world-k8s)
 
 Manages a Hello World application in Kubernetes|OpenShift. This project also
-includes the necessary bits for deploying this role as an Operator in a
+includes the necessary bits for deploying this role with Ansible Operator in a
 Kubernetes|OpenShift cluster.
 
 # Requirements
@@ -53,9 +53,9 @@ Then, we create the important objects our operator needs to run:
 
 ```
 $ kubectl create -f deploy/service_account.yaml \
-               -f deploy/role.yaml \
-               -f deploy/role_binding.yaml \
-               -f deploy/crds/examples_v1alpha1_helloworld_crd.yaml
+                 -f deploy/role.yaml \
+                 -f deploy/role_binding.yaml \
+                 -f deploy/crds/examples_v1alpha1_helloworld_crd.yaml \
 ```
 
 Then, we start the operator:
