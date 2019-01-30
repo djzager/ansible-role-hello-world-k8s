@@ -28,3 +28,7 @@ spec:
                   fieldPath: metadata.namespace
             - name: OPERATOR_NAME
               value: "hello-world-operator"
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
